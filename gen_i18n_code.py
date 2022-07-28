@@ -1,4 +1,3 @@
-from curses.ascii import isascii
 import re
 import os
 import sys
@@ -51,9 +50,11 @@ def transform_to_i18n_call(text):
         return 'lambda: i18n(u"' + escape_string(text) + '")'
 
     i18n_lambda = ""
-    var_names = [g.replace("[", "").replace("]", "").strip() for g in groups]
+    var_names = []
     i18n_string = text
-    for i, (var_name, g) in enumerate(zip(var_names, groups)):
+    for i, g in enumerate(groups):
+        var_name = g.replace("[", "").replace("]", "").strip()
+        var_names.append(var_name)
         i18n_string = i18n_string.replace(g, "{%" + str(i + 1) + "=" + var_name + "}")
 
     i18n_string = escape_string(i18n_string)
