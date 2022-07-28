@@ -78,13 +78,15 @@ def escape_string(text):
 def replace_not_ascii_chars(text):
     output = ""
     for c in text:
-        if c.isascii():
+        if is_ascii(c):
             output += c
         else:
             output += c.encode("unicode-escape").decode()
 
     return output
 
+def is_ascii(char):
+    return ord(char) < 128
 
 if __name__ == "__main__":
 
