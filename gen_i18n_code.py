@@ -72,21 +72,15 @@ def transform_to_i18n_call(text):
 
 
 def escape_string(text):
-    return replace_not_ascii_chars(text.replace('"', '\\"'))
+    return to_unicode_escape(text).replace('"', '\\"')
 
 
-def replace_not_ascii_chars(text):
-    output = ""
-    for c in text:
-        if is_ascii(c):
-            output += c
-        else:
-            output += c.encode("unicode-escape").decode()
+def to_unicode_escape(text):
+    if sys.version_info.major == 2:
+        return text.decode("utf-8").encode("unicode-escape")
 
-    return output
+    return text.encode("unicode-escape").decode()
 
-def is_ascii(char):
-    return ord(char) < 128
 
 if __name__ == "__main__":
 
