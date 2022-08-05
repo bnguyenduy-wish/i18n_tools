@@ -13,38 +13,38 @@ Output files are generated in the same folder: file1.py, file2.py, ...
 Normal sentence
 
 ```
-key name | Sentence to translate
+string name | Sentence to translate
 ```
 
 With context
 ```
-key name | context: Context is here | Content is here
+string name | context: Context is here | Content is here
 ```
 
 With variables
 ```
-key name | Welcome [[ user name ]], have a nice day!
+string name | Welcome { user name }, have a nice day!
 ```
 
 Content can include non-unicode characters, emojis 
 
 ```
-key name | Any content 🎉
+string name | Any content 🎉
 
 ```
 
 Example input file
 
 ```
-subject | Spin to win special "deals", [[user name]] ‘💰’
+subject | Spin to win special "deals", {user name} ‘💰’
 subject1 | Score daily discounts with the Blitz Buy wheel
 
-header | Meet your wheel of deals, [[user name]]
+header | Meet your wheel of deals, {user name}
 body | Spin the Blitz Buy wheel to unlock your number of daily deals
 
-off percent | context: Off percent of discount | [[percent]] off
-discount banner body | Enjoy [[off percent]] your first order with code:
-discount banner body2 | *Expires [[date]]. Max discount [[discount amount]]. In-app only.
+off percent | context: Off percent of discount | {percent} off
+discount banner body | Enjoy {off percent} your first order with code:
+discount banner body2 | *Expires {date}. Max discount {discount amount}. In-app only.
 discount banner body3 | context:  Discount code is only valid once. | Valid once.
 
 ```

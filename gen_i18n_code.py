@@ -63,7 +63,7 @@ def extract_key_value(text):
 
 
 def transform_to_i18n_call(text, context=None):
-    groups = re.findall("(\[\[\s*[\w\s_\-]+\s*\]\])", text)
+    groups = re.findall("(\{\s*[\w\s_\-]+\s*\})", text)
 
     i18n_call = "i18n("
     if context:
@@ -76,7 +76,7 @@ def transform_to_i18n_call(text, context=None):
     var_names = []
     i18n_string = text
     for i, g in enumerate(groups):
-        var_name = g.replace("[", "").replace("]", "").strip()
+        var_name = g.replace("{", "").replace("}", "").strip()
         var_name = to_snake_case(var_name)
         var_names.append(var_name)
         i18n_string = i18n_string.replace(g, "{%" + str(i + 1) + "=" + var_name + "}")
